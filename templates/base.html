@@ -1,0 +1,31 @@
+<!-- Load static files -->
+{% load static %}
+
+<html>
+    <head>
+        <title>Django BlogPost</title>
+        <!--Google font-->
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300&display=swap" rel="stylesheet">
+        <!--Custom Stylesheet base.css-->
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    </head>
+
+    <body>
+        <header>
+            <div class="nav-left">
+                <h1><a href="{% url 'home' %}"></a>Django Blog Post</h1>
+            </div>
+
+            <div class="nav-right">
+                <a href="{% url 'post_new' %}">+ Create Blog Post</a>
+            </div>
+        </header>
+
+
+        <div>
+            {% block content %} 
+
+            {% endblock content %}
+        </div>
+    </body>
+</html>
