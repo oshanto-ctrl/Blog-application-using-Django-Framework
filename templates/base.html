@@ -8,21 +8,35 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300&display=swap" rel="stylesheet">
         <!--Custom Stylesheet base.css-->
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <!--Bootstrap CSS-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+
     </head>
 
     <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark"></nav>
+        <div>
         <header>
             <div class="nav-left">
-                <h1><a href="{% url 'home' %}"></a>Django Blog Post</h1>
+                <h1><a class="navbar-brand" href="{% url 'home' %}"></a>Django Blog Post</h1>
             </div>
 
             <div class="nav-right">
-                <a href="{% url 'post_new' %}">+ Create Blog Post</a>
+                <a class="navbar-brand" href="{% url 'post_new' %}">+ Create Blog Post</a>
             </div>
         </header>
-
-
-        <div>
+        </div>
+        <!--check if user authenticated-->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {% if user.is_authenticated %}
+                <p>Hello {{ user.username }}!</p>
+                <a href="{% url 'logout' %}">Logout</a> <!--Log out link redirect to home.-->
+            {% else %}
+                <p>Your are not logged in.</p>
+                <a href="{% url 'login' %}">Please log in.</a> <!--Login link for user.-->
+            {% endif %}
+        </div>
+        <div class="container">
             {% block content %} 
 
             {% endblock content %}

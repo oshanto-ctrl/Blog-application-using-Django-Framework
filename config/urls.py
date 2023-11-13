@@ -18,5 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')), # user accounts
+    path('accounts/', include('accounts.urls')), # if auth fails, signup here (topdown process)
     path('', include('blogpost.urls')), # blogpost urls included
 ]

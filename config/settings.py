@@ -36,13 +36,16 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic', # add whitenoise
     'django.contrib.staticfiles',
     'blogpost', # blogpost app
+    'accounts', # User accounts for register new users
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Whitenoise middleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -117,7 +120,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+# whitenoise used for production
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))] # Telling django to look newly created static folder
+STATIC_ROOT = STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # Staticfiles to whitenosie 
 
+# Login and Logout redirection url
+LOGIN_REDIRECT_URL = 'home' # Success login redirect user 'home'
+LOGOUT_REDIRECT_URL = 'home' # Success logout redirect user 'home'

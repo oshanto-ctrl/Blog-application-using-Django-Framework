@@ -1,0 +1,20 @@
+<!--templates/registration/login.html-->
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>User Login</h2>
+<form action="" method="post">
+ {% csrf_token %} <!--Security concerns, prevent XSS attack-->
+ {{ form.as_p }} <!--Form's content outputted between paragrap tags-->
+
+ <button type="submit">Log In</button>
+</form>
+
+
+
+{% endblock content %}
+
+
+
+
